@@ -1,0 +1,32 @@
+---
+description: Shared rules across all packages
+globs: **/*
+alwaysApply: false
+---
+- Strive for simplicity and clarity. Over-engineering is a liability at this stage.
+- Follow engineering principles inspired by Stripe & Basecamp: Stripe – High-quality API design, balancing technical elegance with product experience. Basecamp – "Small team, big impact" philosophy, emphasizing clarity and long-term maintainability over trends.
+
+TypeScript Conventions:
+- Use interfaces over types when possible
+- Use strict type checking
+- Proper error handling with custom error types
+
+Code Style:
+- Use functional programming patterns
+- Avoid classes
+- Use pure functions where possible
+- Implement proper error handling
+- Use meaningful variable names
+- Keep functions small and focused
+
+Git Conventions:
+- Use conventional commits
+- Keep PRs focused and small
+- Include proper documentation
+- Add meaningful tests
+
+Performance:
+- Implement proper caching strategies
+- Optimize bundle sizes
+- Use code splitting
+- Implement proper lazy loading
