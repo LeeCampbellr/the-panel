@@ -1,0 +1,15 @@
+.Trigger {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 2rem;
+  background-color: var(--color-gray-200);
+  border: none;
+  cursor: pointer;
+}
+
+.Trigger:hover {
+  background-color: var(--color-gray-100);
+}

@@ -1,0 +1,24 @@
+.Panel {
+  position: fixed;
+  bottom: 3.5rem;
+  right: 1rem;
+  height: calc(100vh - 4.5rem);
+  width: 33vw;
+  background-color: white;
+  border-radius: 0.25rem;
+  border: var(--border);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  transition: transform 0.3s ease;
+}
+
+.Panel[data-open="true"] {
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.Panel[data-open="false"] {
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(1rem);
+}

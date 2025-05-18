@@ -1,14 +1,28 @@
-import React, { useState, useEffect } from "react";
-import styles from "./index.module.css";
+import React, { useState, useEffect, useRef } from "react";
+
 import { Tabs } from "@base-ui-components/react/tabs";
+import "./styles/index.css";
+
+import Trigger from "./components/trigger/trigger";
+import Panel from "./components/panel/panel";
+import tabsStyles from "./components/tabs/tabs.module.css";
+import { Headings } from "./sections/headings/headings";
+import { MetaData } from "./sections/metaData/metaData";
+import { Images } from "./sections/images/images";
+import { Tracking } from "./sections/tracking/tracking";
 
 export default function ThePanel() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      const container = document.querySelector("[data-the-panel]");
-      if (isOpen && container && !container.contains(event.target as Node)) {
+      if (
+        isOpen &&
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     }
@@ -20,30 +34,41 @@ export default function ThePanel() {
   }, [isOpen]);
 
   return (
-    <div data-the-panel>
-      <button onClick={() => setIsOpen(!isOpen)}>Panel</button>
+    <div ref={containerRef} data-the-panel>
+      <Trigger isOpen={isOpen} setIsOpen={setIsOpen} />
 
-      {isOpen && (
-        <div className={styles.Panel}>
-          <Tabs.Root className={styles.Tabs} defaultValue="overview">
-            <Tabs.List className={styles.List}>
-              <Tabs.Tab className={styles.Tab} value="overview">
-                Overview
-              </Tabs.Tab>
-              <Tabs.Tab className={styles.Tab} value="projects">
-                Projects
-              </Tabs.Tab>
-              <Tabs.Tab className={styles.Tab} value="account">
-                Account
-              </Tabs.Tab>
-              <Tabs.Indicator className={styles.Indicator} />
-            </Tabs.List>
-            <Tabs.Panel className={styles.Panel} value="overview"></Tabs.Panel>
-            <Tabs.Panel className={styles.Panel} value="projects"></Tabs.Panel>
-            <Tabs.Panel className={styles.Panel} value="account"></Tabs.Panel>
-          </Tabs.Root>
-        </div>
-      )}
+      <Panel isOpen={isOpen}>
+        <Tabs.Root className={tabsStyles.Tabs} defaultValue="headings">
+          <Tabs.List className={tabsStyles.List}>
+            <Tabs.Tab className={tabsStyles.Tab} value="headings">
+              Headings
+            </Tabs.Tab>
+            <Tabs.Tab className={tabsStyles.Tab} value="open-graph">
+              Meta Data
+            </Tabs.Tab>
+            <Tabs.Tab className={tabsStyles.Tab} value="images">
+              Images
+            </Tabs.Tab>
+            <Tabs.Tab className={tabsStyles.Tab} value="tracking">
+              Tracking
+            </Tabs.Tab>
+            <Tabs.Indicator className={tabsStyles.Indicator} />
+          </Tabs.List>
+
+          <Tabs.Panel className={tabsStyles.Panel} value="headings">
+            <Headings />
+          </Tabs.Panel>
+          <Tabs.Panel className={tabsStyles.Panel} value="open-graph">
+            <MetaData />
+          </Tabs.Panel>
+          <Tabs.Panel className={tabsStyles.Panel} value="images">
+            <Images />
+          </Tabs.Panel>
+          <Tabs.Panel className={tabsStyles.Panel} value="tracking">
+            <Tracking />
+          </Tabs.Panel>
+        </Tabs.Root>
+      </Panel>
     </div>
   );
 }

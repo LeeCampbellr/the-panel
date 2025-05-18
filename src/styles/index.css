@@ -1,0 +1,6 @@
+@import "./theme.css";
+@import "./tokens.css";
+
+body {
+  font-family: var(--font-sans);
+}
