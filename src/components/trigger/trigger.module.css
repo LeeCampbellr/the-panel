@@ -1,15 +1,28 @@
 .Trigger {
   position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 2.5rem;
   background-color: var(--color-gray-200);
   border: none;
-  cursor: pointer;
+  cursor: grab;
+  z-index: 101;
+  transition: background-color 0.2s ease;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
 .Trigger:hover {
+  background-color: var(--color-gray-100);
+}
+
+.Trigger[data-dragging="true"] {
+  transition: none;
+  cursor: grabbing;
   background-color: var(--color-gray-100);
 }
